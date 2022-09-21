@@ -58,16 +58,16 @@ class _SplashScreenState extends State<SplashScreen>
                   return Transform.rotate(
                     angle: _controller.value * 2.0 * math.pi,
                     child: child,
-                    );
+                  );
                 },
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height *.08,
+              height: MediaQuery.of(context).size.height * .08,
             ),
-             Align(
+            Align(
               alignment: Alignment.center,
-               child: Text(
+              child: Text(
                 "Covid-19\nTracker App",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
@@ -75,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen>
                   fontWeight: FontWeight.bold,
                 ),
               ),
-             ),
+            ),
           ],
         ),
       ),
