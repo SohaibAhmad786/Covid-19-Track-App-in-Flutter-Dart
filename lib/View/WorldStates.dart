@@ -25,6 +25,7 @@ class _WorldStateScreenState extends State<WorldStateScreen>
     super.dispose();
     _controller.dispose();
   }
+  
 
   final colorList = <Color>[
     const Color(0xffD95AF3),
@@ -48,10 +49,12 @@ class _WorldStateScreenState extends State<WorldStateScreen>
                 if (!snapshot.hasData) {
                   return Expanded(
                     flex: 1,
-                    child: SpinKitFadingCircle(
-                      size: 50.0,
-                      controller: _controller,
-                      color: Colors.white,
+                    child: Center(
+                      child: SpinKitCubeGrid(
+                        size: 50.0,
+                        controller: _controller,
+                        color: Colors.grey.shade600,
+                      ),
                     ),
                   );
                 } else {
