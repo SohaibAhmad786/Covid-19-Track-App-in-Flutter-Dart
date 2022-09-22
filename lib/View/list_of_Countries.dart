@@ -91,8 +91,8 @@ class _CountryListViewState extends State<CountryListView> {
                               ),
                             ),
                             Divider(
-                              color: Colors.grey.shade700,
-                              thickness: 1.3,
+                              color: Colors.grey.shade100,
+                              thickness: 1.5,
                             )
                           ],
                         );
@@ -122,6 +122,8 @@ class _CountryListViewState extends State<CountryListView> {
                             Divider(
                               color: Colors.grey.shade700,
                               thickness: 1.3,
+                              indent: 10,
+                              endIndent: 10,
                             )
                           ],
                         );
@@ -144,6 +146,8 @@ class _CountryListViewState extends State<CountryListView> {
                             Divider(
                               color: Colors.grey.shade700,
                               thickness: 1.3,
+                              indent: 10,
+                              endIndent: 10,
                             )
                           ],
                         );
