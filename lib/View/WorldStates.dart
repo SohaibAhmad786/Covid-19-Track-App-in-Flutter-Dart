@@ -1,4 +1,7 @@
+import 'package:covid_19_app/Model/world_states_model.dart';
+import 'package:covid_19_app/Services/state_services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pie_chart/pie_chart.dart';
 
@@ -23,12 +26,14 @@ class _WorldStateScreenState extends State<WorldStateScreen>
   }
 
   final colorList = <Color>[
-    const Color(0xff4285F4),
-    const Color(0xff1aa260),
-    const Color(0xffde5246),
+    const Color(0xffD95AF3),
+    const Color(0xffFE9539),
+    const Color(0xff145369),
+    const Color(0xff96be25),
   ];
   @override
   Widget build(BuildContext context) {
+    WorldStateService service = WorldStateService();
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -36,64 +41,124 @@ class _WorldStateScreenState extends State<WorldStateScreen>
             SizedBox(
               height: MediaQuery.of(context).size.height * .06,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: PieChart(
-                dataMap: const {
-                  "Total": 50,
-                  "Recovered": 30,
-                  "Deaths": 20,
-                },
-                animationDuration: const Duration(milliseconds: 1200),
-                chartType: ChartType.ring,
-                colorList: colorList,
-                initialAngleInDegree: 90,
-                legendOptions: const LegendOptions(
-                  legendShape: BoxShape.rectangle,
-                ),
-                ringStrokeWidth: 20,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).size.height * .050,
-                  horizontal: MediaQuery.of(context).size.width * .020),
-              child: Card(
-                child: Column(
-                  children: [
-                    ReusableRow(title: "Total", value: "20000"),
-                    ReusableRow(title: "Total", value: "20000"),
-                    ReusableRow(title: "Total", value: "20000"),
-                    ReusableRow(title: "Total", value: "20000"),
-                    ReusableRow(title: "Total", value: "20000"),
-                    ReusableRow(title: "Total", value: "20000"),
-                    ReusableRow(title: "Total", value: "20000"),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.height * .020,
-              ),
-              child: Container(
-                height: MediaQuery.of(context).size.height * .06,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: colorList),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Center(
-                  child: Text(
-                    "Track Countries",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.roboto(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
+            FutureBuilder(
+              future: service.FetchWorldStateRecord(),
+              builder: (context, AsyncSnapshot<WorldState> snapshot) {
+                if (!snapshot.hasData) {
+                  return Expanded(
+                    flex: 1,
+                    child: SpinKitFadingCircle(
+                      size: 50.0,
+                      controller: _controller,
+                      color: Colors.white,
                     ),
-                  ),
-                ),
-              ),
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 40),
+                        child: PieChart(
+                          dataMap: {
+                            "Total":
+                                double.parse(snapshot.data!.cases.toString()),
+                            "Recovered": double.parse(
+                                snapshot.data!.recovered.toString()),
+                            "Deaths":
+                                double.parse(snapshot.data!.deaths.toString()) *
+                                    45,
+                            "Active":
+                                double.parse(snapshot.data!.active.toString()) *
+                                    25,
+                          },
+                          animationDuration: const Duration(seconds: 2),
+                          chartType: ChartType.ring,
+                          colorList: colorList,
+                          initialAngleInDegree: 90,
+                          chartValuesOptions: ChartValuesOptions(
+                            chartValueStyle: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            decimalPlaces: 1,
+                            showChartValueBackground: true,
+                            chartValueBackgroundColor: Colors.grey.shade800,
+                            showChartValuesInPercentage: true,
+                            showChartValuesOutside: true,
+                          ),
+                          legendOptions: const LegendOptions(
+                            legendShape: BoxShape.rectangle,
+                          ),
+                          ringStrokeWidth: 24,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: MediaQuery.of(context).size.height * .050,
+                            horizontal:
+                                MediaQuery.of(context).size.width * .020),
+                        child: Card(
+                          child: Column(
+                            children: [
+                              ReusableRow(
+                                  title: "Total",
+                                  value: snapshot.data!.cases.toString()),
+                              ReusableRow(
+                                  title: "Deaths",
+                                  value: snapshot.data!.deaths.toString()),
+                              ReusableRow(
+                                  title: "Recovered",
+                                  value: snapshot.data!.recovered.toString()),
+                              ReusableRow(
+                                  title: "Active",
+                                  value: snapshot.data!.active.toString()),
+                              ReusableRow(
+                                  title: "Critical",
+                                  value: snapshot.data!.critical.toString()),
+                              ReusableRow(
+                                  title: "Today Deaths",
+                                  value: snapshot.data!.todayDeaths.toString()),
+                              ReusableRow(
+                                  title: "Today Recovered",
+                                  value:
+                                      snapshot.data!.todayRecovered.toString()),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          
+                        },
+                        
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: MediaQuery.of(context).size.height * .020,
+                          ),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * .06,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: const Color(0xff145369),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Track Countries",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  );
+                }
+              },
             )
           ],
         ),
@@ -141,8 +206,9 @@ class ReusableRow extends StatelessWidget {
               ),
             ],
           ),
-          const Divider(
+          Divider(
             thickness: 1.5,
+            color: Colors.grey.shade700,
           ),
         ],
       ),
