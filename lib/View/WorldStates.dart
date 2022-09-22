@@ -1,5 +1,6 @@
 import 'package:covid_19_app/Model/world_states_model.dart';
 import 'package:covid_19_app/Services/state_services.dart';
+import 'package:covid_19_app/View/list_of_Countries.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,9 +35,9 @@ class _WorldStateScreenState extends State<WorldStateScreen>
   @override
   Widget build(BuildContext context) {
     WorldStateService service = WorldStateService();
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height * .06,
@@ -128,12 +129,17 @@ class _WorldStateScreenState extends State<WorldStateScreen>
                       ),
                       GestureDetector(
                         onTap: () {
-                          
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CountryListView(),
+                            ),
+                          );
                         },
-                        
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                            horizontal: MediaQuery.of(context).size.height * .020,
+                            horizontal:
+                                MediaQuery.of(context).size.height * .020,
                           ),
                           child: Container(
                             height: MediaQuery.of(context).size.height * .06,
