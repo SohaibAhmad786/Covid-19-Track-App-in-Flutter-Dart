@@ -1,16 +1,42 @@
-# covid_19_app
 
-A new Flutter project.
+# Covid-19 Track App
 
-## Getting Started
+This is tell us about the overview of Covid-19 details.
 
-This project is a starting point for a Flutter application.
+I have used Pie chart, google fonts, animation, shimmer effect, API intergration, loading page and splash screen.
 
-A few resources to get you started if this is your first Flutter project:
+## Packages Used:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- cupertino_icons
+- http
+- animated_text_kit
+- pie_chart
+- flutter_spinkit
+- shimmer
+- google_fonts
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Screenshots
+
+- Splash Screen
+![App Screenshot](https://raw.githubusercontent.com/SohaibAhmad786/Covid-19-Track-App-in-Flutter-Dart/master/ScreenShots/Screenshot_1663934101.png)
+
+- Loading Screen
+![App Screenshot](https://raw.githubusercontent.com/SohaibAhmad786/Covid-19-Track-App-in-Flutter-Dart/master/ScreenShots/Screenshot_1663934103.png)
+
+- World Stats Screen
+![App Screenshot](https://raw.githubusercontent.com/SohaibAhmad786/Covid-19-Track-App-in-Flutter-Dart/master/ScreenShots/Screenshot_1663934105.png)
+
+- Shimmer Effect Screen
+![App Screenshot](https://raw.githubusercontent.com/SohaibAhmad786/Covid-19-Track-App-in-Flutter-Dart/master/ScreenShots/Screenshot_1663934119.png)
+
+- Countries List Screen
+![App Screenshot](https://raw.githubusercontent.com/SohaibAhmad786/Covid-19-Track-App-in-Flutter-Dart/master/ScreenShots/Screenshot_1663934122.png)
+
+- Seperate Country Details Screen
+![App Screenshot](https://raw.githubusercontent.com/SohaibAhmad786/Covid-19-Track-App-in-Flutter-Dart/master/ScreenShots/Screenshot_1663934127.png)
+
+- Search Country Screen
+![App Screenshot](https://raw.githubusercontent.com/SohaibAhmad786/Covid-19-Track-App-in-Flutter-Dart/master/ScreenShots/Screenshot_1663934329.png)
+
+
