@@ -9,17 +9,12 @@ import 'package:http/http.dart' as http;
 class WorldStateService {
   // ignore: non_constant_identifier_names
   Future<WorldState> FetchWorldStateRecord() async {
-    try {
-      final response =
-          await http.get(Uri.parse(AppUrl.worldStatesApi.toString()));
-      var data = jsonDecode(response.body.toString());
-      if (response.statusCode == 200) {
-        return WorldState.fromJson(data);
-      } else {
-        throw Exception("error");
-      }
-    } catch (e) {
-      throw e;
+    final response = await http.get(Uri.parse(AppUrl.worldStatesApi.toString()));
+    var data = jsonDecode(response.body.toString());
+    if (response.statusCode == 200) {
+      return WorldState.fromJson(data);
+    } else {
+      throw Exception("error");
     }
   }
 

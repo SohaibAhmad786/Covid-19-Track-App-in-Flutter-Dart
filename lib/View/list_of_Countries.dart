@@ -1,5 +1,6 @@
 import 'package:covid_19_app/Model/countries_list_model.dart';
 import 'package:covid_19_app/Services/state_services.dart';
+import 'package:covid_19_app/View/country_details.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -108,16 +109,39 @@ class _CountryListViewState extends State<CountryListView> {
                       if (searchController.text.isEmpty) {
                         return Column(
                           children: [
-                            ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: NetworkImage(snapshot
-                                    .data![index]['countryInfo']['flag']
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CoutryDetail(
+                                        active: snapshot.data![index]['active'],
+                                        image: snapshot.data![index]
+                                            ['countryInfo']['flag'],
+                                        critical: snapshot.data![index]
+                                            ['critical'],
+                                        totalCases: snapshot.data![index]
+                                            ['cases'],
+                                        name: snapshot.data![index]['country'],
+                                        test: snapshot.data![index]['tests'],
+                                        totalDeaths: snapshot.data![index]
+                                            ['deaths'],
+                                        todayRecovered: snapshot.data![index]
+                                            ['recovered'],
+                                      ),
+                                    ));
+                              },
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage: NetworkImage(snapshot
+                                      .data![index]['countryInfo']['flag']
+                                      .toString()),
+                                ),
+                                title: Text(snapshot.data![index]['country']
                                     .toString()),
+                                subtitle: Text(
+                                    snapshot.data![index]['cases'].toString()),
                               ),
-                              title: Text(
-                                  snapshot.data![index]['country'].toString()),
-                              subtitle: Text(
-                                  snapshot.data![index]['cases'].toString()),
                             ),
                             Divider(
                               color: Colors.grey.shade700,
@@ -132,16 +156,39 @@ class _CountryListViewState extends State<CountryListView> {
                           .contains(searchController.text.toLowerCase())) {
                         return Column(
                           children: [
-                            ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: NetworkImage(snapshot
-                                    .data![index]['countryInfo']['flag']
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CoutryDetail(
+                                        active: snapshot.data![index]['active'],
+                                        image: snapshot.data![index]
+                                            ['countryInfo']['flag'],
+                                        critical: snapshot.data![index]
+                                            ['critical'],
+                                        totalCases: snapshot.data![index]
+                                            ['cases'],
+                                        name: snapshot.data![index]['country'],
+                                        test: snapshot.data![index]['tests'],
+                                        totalDeaths: snapshot.data![index]
+                                            ['deaths'],
+                                        todayRecovered: snapshot.data![index]
+                                            ['recovered'],
+                                      ),
+                                    ));
+                              },
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage: NetworkImage(snapshot
+                                      .data![index]['countryInfo']['flag']
+                                      .toString()),
+                                ),
+                                title: Text(snapshot.data![index]['country']
                                     .toString()),
+                                subtitle: Text(
+                                    snapshot.data![index]['cases'].toString()),
                               ),
-                              title: Text(
-                                  snapshot.data![index]['country'].toString()),
-                              subtitle: Text(
-                                  snapshot.data![index]['cases'].toString()),
                             ),
                             Divider(
                               color: Colors.grey.shade700,
