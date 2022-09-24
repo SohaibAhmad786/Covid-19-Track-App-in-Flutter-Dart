@@ -1,7 +1,7 @@
 
 # Covid-19 Track App
 
-This is tell us about the overview of Covid-19 details.
+This app is about the overview of Covid-19 details.
 
 I have used Pie chart, google fonts, animation, shimmer effect, API intergration, loading page and splash screen.
 
